@@ -7,3 +7,10 @@ export class Criatura {
             this.nombre = nombre; // El nombre si o si deberá ser pasado para crear la criatura
     }
 }
+
+export class Monstruo extends Criatura {
+    constructor(nombre){ // Se deberá declarar el nombre
+        if (this.constructor === Monstruo) throw new Error("No puedes instanciar una clase abstracta")
+        super(nombre); // Se pasa el nombre a la clase abstracta 
+    }
+}

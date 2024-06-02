@@ -5,8 +5,16 @@ import {
 import {
     Heroe
 } from './claseHeroe.js'
+import {
+    Orco,
+    Goblin,
+    Kobold
+} from './clasesMonstruos.js'
 export {
     Criatura,
     Monstruo,
-    Heroe
+    Heroe,
+    Orco,
+    Goblin,
+    Kobold
 }

@@ -54,6 +54,10 @@ export class Juego {
             this.#investigar
         }
     }
+
+    utilizarItem(heroe, item){
+        heroe.utilizarItem(item)
+    }
 }
 
 //Evaluar la posibilidada de que las estadisticas se entrelacen por las clases y no con las internas de la clase juego, es decir recibir parametros los cuales sean las estadisticas reales de los monstruos

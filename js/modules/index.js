@@ -16,6 +16,9 @@ import {
 import {
     Juego
 } from './claseJuego.js'
+import {
+    Item
+} from './claseItem.js'
 export {
     Criatura,
     Monstruo,
@@ -24,5 +27,6 @@ export {
     Goblin,
     Kobold,
     Combate,
-    Juego
+    Juego,
+    Item
 }

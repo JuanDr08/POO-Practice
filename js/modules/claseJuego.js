@@ -2,8 +2,8 @@ import * as m from './index.js'
 
 export class Juego {
     historial = [];
-    #monster = "";
-    #monsterLife = 100;
+    #monster;
+    #monsterLife = 0;
     combate = new m.Combate; //Instanciamos la clase combate para ser usada
     // SETTERS & GETTERS
     constructor(invt){
@@ -45,7 +45,8 @@ export class Juego {
                 this.setMonster = ""
                 this.setMonsterLife = 0
                 this.loguear("Has encontrado una pocion!")
-                this.inventario.push("poscion")
+                this.inventario.inventario.push("poscion")
+                return "poscion"
             }
             return this.monster
         }else this.loguear("No puedes investigar, el monstruo actual sigue vivo")
@@ -59,7 +60,7 @@ export class Juego {
                 this.loguear(vals[1])
             } else this.loguear("No puedes atacar, ya has derrotado al monstruo,investiga otro")
         }else if (accion == "investigar") {
-            this.#investigar
+            return this.#investigar()
         }
     }
     listarItems(){

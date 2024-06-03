@@ -5,11 +5,9 @@
 import * as m from './index.js'
 
 export class Combate {
-    juego = new m.Juego
-    atacar(damage){
-        if (this.juego.monsterLife > 0){
-            this.juego.setMonsterLife -= damage
-            this.juego.loguear = (`Atacas al monstruo! Le quitas ${damage} de vida`)
-        }else this.juego.loguear("No puedes atacar, ya has derrotado al monstruo,investiga otro")
+    atacar(damage, monsterLife){
+        let dmg = monsterLife - damage
+        let mensaje = `Atacas al monstruo! Le quitas ${damage} de vida`
+        return [dmg, mensaje]
     }
 }

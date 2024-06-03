@@ -4,7 +4,7 @@ export class Juego {
     historial = [];
     #monster = "";
     #monsterLife = 100;
-    combate = new m.Combate //Instanciamos la clase combate para ser usada
+    combate = new m.Combate; //Instanciamos la clase combate para ser usada
     // SETTERS & GETTERS
     set setMonster(mon){
         this.#monster = mon;
@@ -28,21 +28,28 @@ export class Juego {
             let rand = Math.trunc(Math.random() * 3) + 1 //Numero aleatorio entre 1 y 3
             if(rand == 1) {
                 this.setMonster = "Orco"
+                this.setMonsterLife = 130
                 this.loguear("Ha aparecido un Orco salvaje!")
             } else if (rand == 2) {
                 this.setMonster = "Kobold"
+                this.setMonsterLife = 115
                 this.loguear("Ha aparecido un Kobold salvaje!")
             } else {
                 this.setMonster = "Goblin"
+                this.setMonsterLife = 100
                 this.loguear("Ha aparecido un Goblin salvaje!")
             }
             return this.monster
         }else this.loguear("No puedes investigar, el monstruo actual sigue vivo")
         
     }
-    ejecutar(accion, damage){
+    ejecutar(accion, damage = 0){
         if (accion == "atacar"){
-            this.combate.atacar = damage
+            if(this.monsterLife > 0) {
+                let vals = this.combate.atacar(damage, this.monsterLife)
+                this.setMonsterLife = vals[0]
+                this.loguear(vals[1])
+            } else this.loguear("No puedes atacar, ya has derrotado al monstruo,investiga otro")
         }else if (accion == "investigar") {
             this.#investigar
         }

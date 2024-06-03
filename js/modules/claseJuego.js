@@ -23,7 +23,7 @@ export class Juego {
         this.historial.push(accion)
         console.log(accion);
     }
-    investigar(){
+    #investigar(){
         if (this.monsterLife <= 0){
             let rand = Math.trunc(Math.random() * 3) + 1 //Numero aleatorio entre 1 y 3
             if(rand == 1) {
@@ -39,6 +39,13 @@ export class Juego {
             return this.monster
         }else this.loguear("No puedes investigar, el monstruo actual sigue vivo")
         
+    }
+    ejecutar(accion, damage){
+        if (accion == "atacar"){
+            this.combate.atacar = damage
+        }else if (accion == "investigar") {
+            this.#investigar
+        }
     }
 }
 

@@ -6,6 +6,9 @@ export class Juego {
     #monsterLife = 100;
     combate = new m.Combate; //Instanciamos la clase combate para ser usada
     // SETTERS & GETTERS
+    constructor(invt){
+        this.inventario = invt
+    }
     set setMonster(mon){
         this.#monster = mon;
     }
@@ -25,7 +28,7 @@ export class Juego {
     }
     #investigar(){
         if (this.monsterLife <= 0){
-            let rand = Math.trunc(Math.random() * 3) + 1 //Numero aleatorio entre 1 y 3
+            let rand = Math.trunc(Math.random() * 4) + 1 //Numero aleatorio entre 1 y 4
             if(rand == 1) {
                 this.setMonster = "Orco"
                 this.setMonsterLife = 130
@@ -34,10 +37,15 @@ export class Juego {
                 this.setMonster = "Kobold"
                 this.setMonsterLife = 115
                 this.loguear("Ha aparecido un Kobold salvaje!")
-            } else {
+            } else if (rand == 3) {
                 this.setMonster = "Goblin"
                 this.setMonsterLife = 100
                 this.loguear("Ha aparecido un Goblin salvaje!")
+            } else {
+                this.setMonster = ""
+                this.setMonsterLife = 0
+                this.loguear("Has encontrado una pocion!")
+                this.inventario.push("poscion")
             }
             return this.monster
         }else this.loguear("No puedes investigar, el monstruo actual sigue vivo")
@@ -54,9 +62,11 @@ export class Juego {
             this.#investigar
         }
     }
-
-    utilizarItem(heroe, item){
-        heroe.utilizarItem(item)
+    listarItems(){
+        this.inventario.listarItems()
+    }
+    utilizarItem(item){
+        this.inventario.utilizarItem(item)
     }
 }
 

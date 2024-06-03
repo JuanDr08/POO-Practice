@@ -10,11 +10,15 @@ import {
     Goblin,
     Kobold
 } from './clasesMonstruos.js'
+import {
+    Combate
+} from './claseCombate.js'
 export {
     Criatura,
     Monstruo,
     Heroe,
     Orco,
     Goblin,
-    Kobold
+    Kobold,
+    Combate
 }

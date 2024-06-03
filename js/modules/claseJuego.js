@@ -4,7 +4,7 @@ export class Juego {
     historial = [];
     #monster = "";
     #monsterLife = 100;
-
+    combate = new m.Combate //Instanciamos la clase combate para ser usada
     // SETTERS & GETTERS
     set setMonster(mon){
         this.#monster = mon;
@@ -19,37 +19,27 @@ export class Juego {
         return this.#monsterLife;
     }
     // METODOS
-    loguear(ataca = "", accion) { // METODO QUE PERMITE REGISTRAR EL HISTORIAL DEL JUEGO
-        if (ataca){
-            this.historial.push(accion)
-            console.log(accion);
-        }else {
-            this.historial.push(accion)
-            console.log(accion);
-        }
+    loguear(accion) { // METODO QUE PERMITE REGISTRAR EL HISTORIAL DEL JUEGO
+        this.historial.push(accion)
+        console.log(accion);
     }
     investigar(){
-        if (this.monsterLife == 0){
+        if (this.monsterLife <= 0){
             let rand = Math.trunc(Math.random() * 3) + 1 //Numero aleatorio entre 1 y 3
             if(rand == 1) {
                 this.setMonster = "Orco"
-                this.loguear("", 0, "Ha aparecido un Orco salvaje!")
+                this.loguear("Ha aparecido un Orco salvaje!")
             } else if (rand == 2) {
                 this.setMonster = "Kobold"
-                this.loguear("", 0, "Ha aparecido un Kobold salvaje!")
+                this.loguear("Ha aparecido un Kobold salvaje!")
             } else {
                 this.setMonster = "Goblin"
-                this.loguear("", 0, "Ha aparecido un Goblin salvaje!")
+                this.loguear("Ha aparecido un Goblin salvaje!")
             }
             return this.monster
-        }else this.loguear("", "No puedes investigar, el monstruo actual sigue vivo")
+        }else this.loguear("No puedes investigar, el monstruo actual sigue vivo")
         
     }
-
-    atacar(damage){
-        if (this.monsterLife > 0){
-            this.setMonsterLife -= damage
-            this.loguear = ("Y", `Atacas al monstruo! Le quitas ${damage} de vida`)
-        }else this.loguear("", "No puedes atacar, ya has derrotado al monstruo, investiga otro")
-    }
 }
+
+//Evaluar la posibilidada de que las estadisticas se entrelacen por las clases y no con las internas de la clase juego, es decir recibir parametros los cuales sean las estadisticas reales de los monstruos

@@ -45,7 +45,7 @@ export class Juego {
                 this.setMonster = ""
                 this.setMonsterLife = 0
                 this.loguear("Has encontrado una pocion!")
-                this.inventario.inventario.push("poscion")
+                this.inventario.agregar("poscion")
                 return "poscion"
             }
             return this.monster

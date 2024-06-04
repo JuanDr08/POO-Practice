@@ -1,10 +1,12 @@
 import * as m from './modules/index.js'
 
 //5. Chequear si el juego está terminado o no (si `Heroe` no tiene vida), e impedir hacer acciones si lo está
-//6. Permitir reiniciar el juego
-//13. agregar pocion a inventario
 let buttonStart = document.getElementById("start")
 let investigar = document.getElementById("investigar")
+let restart = document.getElementById("restart")
+let inventory = document.getElementById("inventory")
+let useItem = document.getElementById("use")
+let attack = document.getElementById("attack")
 
 let heroContainer = document.querySelector(".hero__stats")
 let heroName = document.querySelector(".hero__name");
@@ -28,14 +30,16 @@ buttonStart.addEventListener("click", ()=>{
 
 
     let heroe = new m.Heroe(heroName.textContent, new m.Inventario)
-    heroLife.textContent = `Vida de tu heroe ${heroe.vida}`
+    heroLife.textContent = `Vida de tu heroe: ${heroe.vida}`
     heroMaxLife.textContent = `Vida maxima de tu heroe: ${heroe.vidaMax}`
     heroAttack.textContent = `Ataque actual de tu heroe: ${heroe.ataque}`
 
     let inventario = new m.Inventario
     let juego = new m.Juego(inventario)
     investigar.addEventListener("click", ()=>{
-        
+        console.log(inventario);
+        restart.style.display = "block"
+        restart.addEventListener("click", () => location.reload())
         let hecho = juego.ejecutar("investigar")
         let monstruo;
         if (hecho == "poscion"){
@@ -51,10 +55,12 @@ buttonStart.addEventListener("click", ()=>{
             }else if (hecho == "Goblin"){
                 monstruo = new m.Goblin;
             }
+            monstruo.setVida = juego.monsterLife
+            monstruo.setVidaMax = juego.monsterLife
             monsterContainer.style.display = "block"
             monsterName.textContent = `Monstruo tipo: ${monstruo.nombre}`
-            monsterLife.textContent = `Vida del monstruo: ${juego.monsterLife}`
-            monsterMaxLife.textContent = `Vida maxima del monstruo: ${juego.monsterLife}`
+            monsterLife.textContent = `Vida del monstruo: ${monstruo.vida}`
+            monsterMaxLife.textContent = `Vida maxima del monstruo: ${monstruo.vidaMax}`
             monsterAttack.textContent = `Ataque del monstruo: ${monstruo.ataque}`
         }
     })

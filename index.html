@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,25 @@
     <script src="js/main.js" type="module"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <button id="start">START</button>
     <button id="investigar">investigar</button>
     <div class="hero__stats">
-        <button id="inventory">Inventario</button>
-        <button id="use">Utilizar Item</button>
-        <button id="attack">Atacar</button>
-        <h3 class="hero__name"></h3>
-        <p class="hero__life"></p>
-        <p class="hero__maxlife"></p>
-        <p class="hero__attack"></p>
+        <div class="actions">
+            <button id="inventory">Inventario</button>
+            <button id="use">Utilizar Item</button>
+            <button id="attack">Atacar</button>
+        </div>
+        <div class="stats">
+            <h3 class="hero__name"></h3>
+            <p class="hero__life"></p>
+            <p class="hero__maxlife"></p>
+            <p class="hero__attack"></p>
+        </div>
+        <div class="hero__inventory">
+            
+        </div>
     </div>
     <button id="restart">Reiniciar</button>
     <div class="monster__stats">
@@ -27,4 +36,5 @@
         <p class="monster__attack"></p>
     </div>
 </body>
+
 </html>

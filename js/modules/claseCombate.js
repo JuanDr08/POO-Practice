@@ -5,9 +5,14 @@
 import * as m from './index.js'
 
 export class Combate {
-    atacar(damage, monsterLife){
-        let dmg = monsterLife - damage
-        let mensaje = `Atacas al monstruo! Le quitas ${damage} de vida`
+    atacar(damage, monsterLife, monster = 0){
+        let dmg;
+        let mensaje;
+        if(monsterLife < damage) dmg = monsterLife - monsterLife
+        else {
+            dmg = monsterLife - damage
+        }
+        monster ? mensaje = `El monstruo te ha atacado, te quita ${damage} de vida` : mensaje = `Atacas al monstruo! Le quitas ${damage} de vida`
         return [dmg, mensaje]
     }
 }

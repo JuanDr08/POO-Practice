@@ -6,8 +6,9 @@ export class Juego {
     #monsterLife = 0;
     combate = new m.Combate; //Instanciamos la clase combate para ser usada
     // SETTERS & GETTERS
-    constructor(invt){
+    constructor(invt, herolife){
         this.inventario = invt
+        this.heroLife = herolife
     }
     set setMonster(mon){
         this.#monster = mon;
@@ -23,6 +24,7 @@ export class Juego {
     }
     // METODOS
     loguear(accion) { // METODO QUE PERMITE REGISTRAR EL HISTORIAL DEL JUEGO
+        alert(accion)
         this.historial.push(accion)
         console.log(accion);
     }
@@ -45,7 +47,7 @@ export class Juego {
                 this.setMonster = ""
                 this.setMonsterLife = 0
                 this.loguear("Has encontrado una pocion!")
-                this.inventario.agregar("poscion")
+                this.inventario.agregar(new m.Item("poscion"))
                 return "poscion"
             }
             return this.monster
@@ -53,21 +55,28 @@ export class Juego {
         
     }
     ejecutar(accion, damage = 0){
+        if(accion == "monsterAttack") {
+            let vals = this.combate.atacar(damage, this.heroLife, 1)
+            this.heroLife = vals[0]
+            this.loguear(vals[1])
+            return vals[0]
+        }
         if (accion == "atacar"){
             if(this.monsterLife > 0) {
                 let vals = this.combate.atacar(damage, this.monsterLife)
                 this.setMonsterLife = vals[0]
                 this.loguear(vals[1])
-            } else this.loguear("No puedes atacar, ya has derrotado al monstruo,investiga otro")
+                return vals[0]
+            }
         }else if (accion == "investigar") {
             return this.#investigar()
         }
     }
     listarItems(){
-        this.inventario.listarItems()
+        return this.inventario.listarItems()
     }
     utilizarItem(item){
-        this.inventario.utilizarItem(item)
+        return this.inventario.utilizarItem(item)
     }
 }
 

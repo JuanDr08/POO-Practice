@@ -13,8 +13,14 @@ body {
 }
 .hero__stats, .monster__stats {
     display: none;
+    gap: 10px;
+}
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-#investigar, #restart {
+#investigar, #restart, #attack, #inventory, #use {
     display: none;
 }
